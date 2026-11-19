@@ -656,7 +656,7 @@ function buildMenu(){
   document.body.appendChild(z);
   const n=document.createElement("div");n.id="qm";
   const li=(v,l,i)=>`<li class="nav-item"><button class="nav-link" data-v="${v}"><i>${i}</i>${l}</button></li>`;
-  n.innerHTML=`<div class="nav-bg"></div><div class="nav-top nav-panel"><span class="nav-brand">Lingora</span><ul class="nav-list">${li("home","Home","00")}<li class="nav-sep nav-item">Courses</li>${COURSES.map((c,k)=>li("c"+k,c.t,"0"+(k+1))).join("")}<li class="nav-sep nav-item">More</li>${li("contact","Contact","→")}</ul><div class="nav-login">Semester 3 · English Education</div></div><div class="nav-middle nav-panel" id="nvm"></div><div class="nav-bottom nav-panel"><span>Notes · quizzes · AI tutor</span><button class="nav-tg" id="nvt">Light / Dark</button></div>`;
+  n.innerHTML=`<div class="nav-bg"></div><div class="nav-top nav-panel"><span class="nav-brand">Lingora</span><ul class="nav-list">${li("home","Home","00")}<li class="nav-sep nav-item">Courses</li>${COURSES.map((c,k)=>li("c"+k,c.t,"0"+(k+1))).join("")}<li class="nav-sep nav-item">More</li>${li("contact","Contact","→")}</ul><div class="nav-login">Student · English Education</div></div><div class="nav-middle nav-panel" id="nvm"></div><div class="nav-bottom nav-panel"><span>Notes · quizzes · AI tutor</span><button class="nav-tg" id="nvt">Light / Dark</button></div>`;
   document.body.appendChild(n);
   $("cmb").onclick=toggleMenu;n.querySelector(".nav-bg").onclick=closeMenu;$("nvt").onclick=theme;
   n.querySelectorAll(".nav-link").forEach(b=>b.onclick=()=>{if(b.dataset.v===view)closeMenu();else go(b.dataset.v)});
@@ -685,7 +685,7 @@ function home(){
   const tips=COURSES.flatMap(c=>c.top.filter(t=>t.c).flatMap(t=>t.c.map(x=>[c.t,x]))),cv12=hs.slice(-12).map(x=>x.p);
   const hab=[["Learn the IPA symbols","One symbol, one sound. Start with the vowels, then move on to the consonants."],["Use minimal pairs","Practise pairs like ship / sheep to train both your ear and your mouth."],["Shadow native speakers","Repeat a short clip right after you hear it, copying its rhythm and stress."],["Record yourself","Listen back and compare with a dictionary recording."]];
   const faq=[["What is phonetics?","Phonetics studies how speech sounds are produced, transmitted and heard. Phonology studies how those sounds work as a system in a language."],["Is my progress saved?","Yes, in this browser only. Clearing site data or switching device starts you fresh."],["How does the AI tutor work?","It uses Google Gemini. Add your own API key with the ⚙ button in the chat box. The key stays in your browser."],["How do I switch courses?","Open the quick menu with the three dots at the top right. Every course is listed there."]];
-  app.innerHTML=`<span class="tag">Semester 3 · English Education</span><h1 class="hh">${g}${nama?", "+esc(nama):""}.</h1>
+  app.innerHTML=`<span class="tag">Student · English Education</span><h1 class="hh">${g}${nama?", "+esc(nama):""}.</h1>
   <input id="nm" class="nm2" placeholder="Your name" maxlength="20" value="${esc(nama)}" autocomplete="off">
   ${last&&COURSES[last[0]]&&COURSES[last[0]].top[last[1]]?`<button class="mc" id="ct" style="margin-top:22px"><span class="ic">▶</span><div><b>Continue: ${esc(COURSES[last[0]].top[last[1]].t)}</b><small>${esc(COURSES[last[0]].t)}</small></div><i>→</i></button>`:""}
   <div class="st3"><div class="sn"><b data-n="${tot}">0</b><span>Topics studied</span></div><div class="sn"><b data-n="${hs.length}">0</b><span>Quizzes taken</span></div><div class="sn"><b data-n="${acc}" data-s="%">0</b><span>Accuracy</span></div></div>
@@ -880,7 +880,7 @@ async function ask(q){
   chat.push({role:"user",parts:[{text:q}]});
   const ci=$("ci");if(ci)ci.value="";
   const el=bub("a",'<span class="dots"><i></i><i></i><i></i></span>');
-  const sys="You are Lingora’s AI tutor for semester 3 English Education students. Reply in clear English, in under 170 words unless asked for more, with short examples. The student is currently studying: "+(ctx||"the Lingora home page")+".";
+  const sys="You are Lingora’s AI tutor for English Education students. Reply in clear English, in under 170 words unless asked for more, with short examples. The student is currently studying: "+(ctx||"the Lingora home page")+".";
   const turns=chat.slice(-MAX_TURNS);
   while(turns.length&&turns[0].role!=="user")turns.shift();
   const scroll=()=>{const cm=$("cm2");if(cm)cm.scrollTop=1e9};
@@ -980,9 +980,9 @@ function buildLanding(){
   const S=(cls,fx,k,t,d,x)=>`<section class="ld-s ${cls}"><div class="ld-k">${k}</div><h2 class="ld-t" data-fx="${fx}">${t}</h2><p class="ld-d">${d}</p>${x||""}</section>`;
   l.innerHTML=`<div class="ld-n"><b>Lingora</b><button data-go>Start learning</button></div>
   <div class="ld-main"><div class="pc p1"><div class="pbox"></div></div><div class="pc p2"><div class="pm"></div></div><div class="pc p3"><div class="pm"></div></div><div class="pc p4"><div class="pm"></div></div><div class="pc p5"><div class="pm"></div></div><div class="pc p6"><div class="pm"></div></div></div>
-  <section class="ld-s hr"><h1 class="ld-h" data-speed="0.88" aria-label="Lingora">${"LINGORA".split("").map((c,i)=>`<span style="--i:${i}" aria-hidden="true">${c}</span>`).join("")}</h1><p class="ld-sub" data-fx="chars">English phonetics, made simple.</p><div class="ld-cue">Scroll ↓</div>
+  <section class="ld-s hr"><h1 class="ld-h" data-speed="0.88" aria-label="Lingora">${"LINGORA".split("").map((c,i)=>`<span style="--i:${i}" aria-hidden="true">${c}</span>`).join("")}</h1><p class="ld-sub" data-fx="chars">English courses, made simple.</p><div class="ld-cue">Scroll ↓</div>
   <button class="ld-bd" data-go aria-label="Start learning"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="bp" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs><text><textPath href="#bp" textLength="480" lengthAdjust="spacing">START LEARNING FOR FREE • START LEARNING FOR FREE •</textPath></text></svg><b>↗</b></button></section>
-  ${S("","lines","01 · What is Lingora","A study space for semester 3 English Education students.","No clutter. Notes, quizzes and a tutor, all in one place.")}
+  ${S("","lines","01 · What is Lingora","A study space for English Education students.","No clutter. Notes, quizzes and a tutor, all in one place.")}
   ${S("c","words","Preview","See it in action.","Courses, quizzes, the AI tutor and your progress curve, all in one place.",PV)}
   ${S("c","words","02 · Study materials",`${nT} topics across ${COURSES.length} courses.`,"Notes for every topic, with YouTube links for extra practice.")}
   ${S("r","chars","03 · Quizzes","Test yourself.",`${nQ} multiple-choice questions with instant feedback and an explanation for every answer.`)}
