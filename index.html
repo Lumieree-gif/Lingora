@@ -815,7 +815,7 @@ function aiPage(){
 }
 function home(){
   view="home";ctx="";app.classList.add("wide");
-  const h=new Date().getHours(),g=h<12?"Good morning":h<18?"Good afternoon":"Good evening",hs=hist(),lt=lastTopic();
+  const h=new Date().getHours(),g=h<12?"Good morning":h<18?"Good afternoon":"Good evening",hs=hist();
   const tot=COURSES.reduce((a,c)=>a+seenOf(c),0),qs=hs.reduce((a,x)=>a+x.n,0),acc=qs?Math.round(hs.reduce((a,x)=>a+x.s,0)/qs*100):0;
   const tips=COURSES.flatMap(c=>c.top.filter(t=>t.c).flatMap(t=>t.c.map(x=>[c.t,x]))),ps=hs.map(x=>x.p),cv12=ps.slice(-12);
   const best=ps.length?Math.max(...ps):0,lastP=ps.length?ps[ps.length-1]:0,prev=ps.length>1?ps[ps.length-2]:0;
@@ -824,8 +824,7 @@ function home(){
   const faq=[["What is phonetics?","Phonetics studies how speech sounds are produced, transmitted and heard. Phonology studies how those sounds work as a system in a language."],["Is my progress saved?","Yes, in this browser only. Clearing site data or switching device starts you fresh."],["How does the AI tutor work?","It uses Google Gemini. Open it from the menu or the round button at the bottom right, then add your own API key with the ⚙ button. The key stays in your browser."],["How do I switch courses?","Open the menu at the top. Every course is listed there."]];
   const steps=[["Read the notes","Open a course from the menu and take one topic at a time."],["Take the quiz","Answer the questions and read the explanation behind every answer."],["Review and ask","Retry what you missed. Ask the AI tutor when something is still unclear."]];
   app.innerHTML=`<div class="hm">
-  <header class="hm-top"><div><span class="tag">Student · English Education</span><h1 class="hh">${g}${nama?", "+esc(nama):""}.</h1><input id="nm" class="nm2" placeholder="Your name" maxlength="20" value="${esc(nama)}" autocomplete="off"></div>
-  ${lt?`<button class="mc" id="ct"><span class="ic">▶</span><div><b>Continue: ${esc(lt.t)}</b><small>${esc(COURSES[lt.L[0]].t)}</small></div><i>→</i></button>`:""}</header>
+  <header class="hm-top"><div><span class="tag">Student · English Education</span><h1 class="hh">${g}${nama?", "+esc(nama):""}.</h1><input id="nm" class="nm2" placeholder="Your name" maxlength="20" value="${esc(nama)}" autocomplete="off"></div></header>
   <section class="cx pg-c"><div class="cx-h"><div><span class="tag">Progress</span><h3 class="hs-t" data-fx="lines">Your score curve.</h3></div><div class="pills"><span class="pill">Best ${best}%</span><span class="pill">Last ${lastP}%</span></div></div>
     <div class="curve">${ps.length>=2?curveSvg(cv12):'<div class="empty"><svg viewBox="0 0 600 220" aria-hidden="true"><path d="M28 170C120 150 170 90 260 110S420 40 572 30" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 9" stroke-linecap="round"/></svg><p>Take at least two quizzes to draw your curve.</p></div>'}</div>
     <p class="ex">${ex}</p><button class="btn ghost" id="rs">Reset progress</button></section>
@@ -839,7 +838,6 @@ function home(){
   const nm=$("nm");nm.oninput=()=>{nama=nm.value.trim();ST.set("qz-nama",nama);document.querySelector(".hh").textContent=g+(nama?", "+nama:"")+"."};nm.onkeydown=e=>{e.stopPropagation();if(e.key==="Enter")nm.blur()};
   $("oc").onclick=$("oc2").onclick=()=>go("courses");
   $("rs").onclick=()=>{if(!confirm("Reset all progress and scores?"))return;try{Object.keys(localStorage).filter(k=>k.startsWith("qz-")&&k!=="qz-nama"&&k!=="qz-th").forEach(k=>localStorage.removeItem(k))}catch(e){}nav(home,"Home")};
-  if(lt)$("ct").onclick=()=>nav(()=>{setCourse(lt.L[0]);topic(lt.L[1])},lt.t);
   const tp=()=>{const [cn,x]=tips[Math.floor(Math.random()*tips.length)];$("tp").innerHTML=`<small>${esc(cn)}</small><b>${esc(x[0])}</b><span>${esc(x[1])}</span><br><button class="chip" id="tr">Another tip</button>`;$("tr").onclick=tp};tp();cnt();homeFx();
 }
 function cpage(){
