@@ -243,14 +243,48 @@ html.ld-on main{display:none}html.ld-on #isl,html.ld-on #mo,html.ld-on #fabw{dis
 .ah p{margin:8px 0 0;color:#8e93a8;font-size:15px}
 #cw.home #cm2{display:flex;flex-direction:column;gap:10px;max-height:320px;overflow:auto;padding:0 0 14px}
 #cw.home .bb.u{background:#c4b5fd;color:#14102e}#cw.home .bb.a{background:rgba(255,255,255,.07);color:#f6eedc}
-.ab{border:1px solid rgba(255,255,255,.1);border-radius:20px;background:rgba(255,255,255,.03);transition:border-color .2s}
-.ab:focus-within{border-color:#c4b5fd}
-.ab textarea{display:block;width:100%;resize:none;border:0;outline:0;background:none;color:#f6eedc;font:inherit;padding:18px 20px 12px}
-.ar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid rgba(255,255,255,.08)}
 .ar .ib{width:40px;height:40px;margin-right:8px;border:0;border-radius:12px;background:rgba(255,255,255,.06);color:#c9cde0;font-size:18px;cursor:pointer}
-.ar .sd{border:0;border-radius:12px;padding:11px 20px;background:rgba(255,255,255,.08);color:#d6daee;font:inherit;cursor:pointer}
 #cw.home .qc{justify-content:center;padding:18px 0 0}
 #cw.home .qc .chip{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:#c9cde0;font-size:14px;padding:9px 16px;border-radius:12px;margin:0}
+
+/* ===== AI Chat Input (Morphing Prompt) ===== */
+.pi-wrap{position:relative;width:100%;transition:max-width .4s cubic-bezier(.175,.885,.32,1.275)}
+.pi-card{position:relative;width:100%;border:1px solid rgba(255,255,255,.12);border-radius:24px;background:rgba(255,255,255,.04);box-shadow:0 2px 16px rgba(0,0,0,.2);transition:height .4s cubic-bezier(.175,.885,.32,1.275),border-color .2s;overflow:visible}
+.pi-card:focus-within{border-color:rgba(196,181,253,.5);box-shadow:0 0 0 1px rgba(196,181,253,.18),0 4px 24px rgba(0,0,0,.25)}
+.pi-placeholder{position:absolute;inset:0;padding:15px 56px 15px 18px;font:500 15px/1.4 var(--f-sans);color:rgba(255,255,255,.35);pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;border-radius:24px;cursor:text;transition:opacity .25s,transform .25s}
+.pi-placeholder.hidden{opacity:0;transform:scale(1.04) translateY(3px);pointer-events:none}
+.pi-textarea{position:absolute;top:0;left:0;right:0;width:100%;resize:none;border:0;outline:0;background:transparent;color:#f6eedc;font:15px/1.5 var(--f-sans);padding:14px 56px 14px 18px;border-radius:24px;overflow-y:hidden;transition:opacity .25s,transform .25s}
+.pi-textarea.hidden{opacity:0;transform:scale(.96) translateY(-4px);pointer-events:none}
+.pi-textarea.scrollable{overflow-y:auto}
+.pi-top-fade{position:absolute;left:18px;right:56px;top:0;height:28px;background:linear-gradient(to bottom,rgba(8,9,18,.8),transparent);pointer-events:none;opacity:0;transition:opacity .15s;border-radius:24px 24px 0 0;z-index:2}
+.pi-bot-fade{position:absolute;left:18px;right:56px;height:28px;background:linear-gradient(to top,rgba(8,9,18,.8),transparent);pointer-events:none;opacity:0;transition:opacity .15s,top .4s cubic-bezier(.175,.885,.32,1.275);z-index:2}
+.pi-actions{position:absolute;bottom:10px;left:10px;right:56px;display:flex;align-items:center;gap:0;z-index:10;transition:opacity .3s,transform .3s;transform-origin:bottom left}
+.pi-actions.hidden{opacity:0;transform:translateY(6px) scale(.97);pointer-events:none}
+.pi-action-btn{display:flex;align-items:center;gap:5px;background:none;border:0;border-radius:999px;padding:5px 9px;font:600 12px var(--f-sans);color:rgba(255,255,255,.4);cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+.pi-action-btn:hover{background:rgba(255,255,255,.08);color:#f6eedc}
+.pi-action-btn img{width:14px;height:14px;object-fit:contain;opacity:.7;border-radius:3px}
+.pi-action-btn svg{flex:none}
+.pi-send{position:absolute;right:10px;bottom:10px;z-index:10;width:36px;height:36px;border-radius:50%;border:0;background:#c4b5fd;color:#14102e;cursor:pointer;display:grid;place-items:center;transition:opacity .2s,transform .15s;flex:none}
+.pi-send:hover{opacity:.9}
+.pi-send:active{transform:scale(.92)}
+.pi-send svg{position:absolute;inset:0;margin:auto;transition:opacity .2s,transform .2s}
+.pi-send .ico-arr{opacity:1;transform:scale(1) rotate(0)}
+.pi-send .ico-mic{opacity:0;transform:scale(.5) rotate(-45deg)}
+.pi-send .ico-stop{opacity:0;transform:scale(.5) rotate(45deg)}
+.pi-send.show-mic .ico-arr{opacity:0;transform:scale(.5) rotate(45deg)}
+.pi-send.show-mic .ico-mic{opacity:1;transform:scale(1) rotate(0)}
+.pi-send.show-stop .ico-arr{opacity:0;transform:scale(.5) rotate(45deg)}
+.pi-send.show-stop .ico-stop{opacity:1;transform:scale(1) rotate(0)}
+.pi-wave{position:absolute;right:56px;bottom:10px;z-index:10;display:flex;align-items:center;gap:3px;height:36px;width:0;overflow:hidden;transition:width .35s cubic-bezier(.175,.885,.32,1.275),opacity .3s}
+.pi-wave.active{width:68px;opacity:1}
+.pi-wave .bar{width:4px;border-radius:999px;background:#c4b5fd;transition:height 80ms ease-out;min-height:4px}
+.pi-model-menu{position:absolute;bottom:calc(100% + 10px);left:0;min-width:170px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:rgba(10,12,28,.92);backdrop-filter:blur(16px) saturate(140%);padding:5px;box-shadow:0 16px 50px rgba(0,0,0,.5);z-index:50;transition:opacity .25s cubic-bezier(.34,1.56,.64,1),transform .25s cubic-bezier(.34,1.56,.64,1)}
+.pi-model-menu.hidden{opacity:0;transform:scale(.95) translateY(8px);pointer-events:none}
+.pi-model-opt{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border:0;background:none;color:rgba(255,255,255,.75);font:500 13px var(--f-sans);border-radius:12px;cursor:pointer;text-align:left;transition:background .15s,color .15s}
+.pi-model-opt:hover{background:rgba(255,255,255,.08);color:#f6eedc}
+.pi-model-opt img{width:14px;height:14px;object-fit:contain;border-radius:3px;opacity:.85}
+.pi-clear{margin-left:auto;width:34px;height:34px;border:0;border-radius:50%;background:none;color:rgba(255,255,255,.35);font:inherit;font-size:18px;cursor:pointer;transition:background .2s,color .2s;display:grid;place-items:center}
+.pi-clear:hover{background:rgba(255,255,255,.07);color:#f6eedc}
 /* ===== Kurva progres ===== */
 .curve svg{width:100%;height:auto;margin:10px 0 26px}
 .gl{stroke:var(--bd)}.gt{fill:var(--mu);font-size:11px}.ga{fill:var(--ac);opacity:.12}
@@ -1094,11 +1128,12 @@ function renderChat(force){
     return;
   }
   $("cb").innerHTML=`<div class="ah"><h3>How can I help today?</h3><p>Type a command or ask a question</p></div><div id="cm2"></div><div class="ab"><textarea id="ci" rows="3" placeholder="Ask Lingora a question…" autocomplete="off"></textarea><div class="ar"><span><button class="ib" id="cr" title="Clear chat">↺</button><button class="ib" id="cg" title="API key">⚙</button></span><button class="sd" id="cs">Send ➤</button></div></div><div class="qc">${["Explain this topic simply","Give me 3 examples","Quiz me on this","Improve my sentence"].map(t=>`<button class="chip">${t}</button>`).join("")}</div>`;
-  bub("a","Hi! I’m your Lingora tutor. Ask me about any topic, exercise, or quiz question.");
+  // Build morphing prompt-input chat UI
+  $("cb").innerHTML=`<div class="ah"><h3>How can I help today?</h3><p>Ask about any topic, exercise, or quiz.</p></div><div id="cm2"></div><div id="pi-root" style="margin-top:14px"></div><div class="qc">${["Explain this topic simply","Give me 3 examples","Quiz me on this","Improve my sentence"].map(t=>`<button class="chip">${t}</button>`).join("")}</div>`;
+  bub("a","Hi! I'm your Lingora tutor. Ask me about any topic, exercise, or quiz question.");
   chat.forEach(m=>bub(m.role==="user"?"u":"a",m.role==="user"?esc(m.parts[0].text):fmt(m.parts[0].text)));
-  $("ci").onkeydown=e=>{e.stopPropagation();if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();ask($("ci").value)}};$("cr").onclick=()=>{chat.length=0;renderChat()};$("cg").onclick=()=>renderChat(true);
-  $("cs").onclick=()=>ask($("ci").value);
-  document.querySelectorAll(".qc .chip").forEach(b=>b.onclick=()=>ask(b.textContent));
+  mountPromptInput($("pi-root"));
+  document.querySelectorAll(".qc .chip").forEach(b=>b.onclick=()=>{const ci=$("pi-ta");if(ci){ci.value=b.textContent;ci.dispatchEvent(new Event("input"))}setTimeout(()=>ask(b.textContent),0)});
   $("cm2").scrollTop=1e6;
 }
 const MAX_TURNS=8;
@@ -1168,6 +1203,277 @@ async function ask(q){
 function mountAI(){
   const h=$("hc");if(!h)return;
   const w=document.createElement("div");w.id="cw";w.className="open home";w.innerHTML='<div id="cb"></div>';h.appendChild(w);renderChat();
+}
+
+// ── Morphing Prompt Input (vanilla port of the React component) ──────────────
+function mountPromptInput(root){
+  if(!root)return;
+  const MODELS=[
+    {id:"GPT 5.5",    icon:"https://cdn.21st.dev/assets/mirror/b9/b93fa7942be639a1dae60194ff12141145d7d9fd59581582d6ff23335755f19c.svg"},
+    {id:"Gemini 3.5 Flash",icon:"https://cdn.21st.dev/assets/mirror/cd/cda2df6631d5fa227de3fa04ed78cf354f910ba92a9f086e7455655c10ad9d09.svg"},
+    {id:"Opus 4.8",   icon:"https://cdn.21st.dev/assets/mirror/5d/5de1221c77cc91e748066fd642ad0eee1c1fa65328814f5178166f901e599709.svg"},
+    {id:"Composer 2.5",icon:"https://cdn.21st.dev/assets/mirror/7d/7dc00bc09f225fcda46cbc9c6b669c69c025a231877d6c17baa6a003f04f02b2.svg"},
+    {id:"GLM 5.2",    icon:"https://cdn.21st.dev/assets/mirror/b2/b2a6c0ff63efd8a555edf8a174ea6fcfeca120ac1595a2d461ca11d3ae89276c.svg"}
+  ];
+  const EFFORTS=["Low","Medium","Max Effort"];
+  const EFFORT_BARS=[1,2,3];
+
+  let expanded=false,selectedModel=0,effortIdx=1,isRecording=false;
+  let streamRef=null,audioCtxRef=null,rafRef=null,recognitionRef=null,demoInterval=null,demoTextInterval=null;
+  let audioData=[0,0,0,0,0];
+  let isModelMenuOpen=false;
+
+  // Build DOM
+  root.innerHTML=`
+    <div class="pi-wrap" id="pi-wrap">
+      <div class="pi-card" id="pi-card">
+        <div class="pi-top-fade" id="pi-top-fade"></div>
+        <div class="pi-bot-fade" id="pi-bot-fade"></div>
+        <div class="pi-placeholder" id="pi-ph">Ask Lingora a question…</div>
+        <textarea class="pi-textarea hidden" id="pi-ta" placeholder="Ask Lingora a question…" autocomplete="off" rows="1" aria-label="Prompt"></textarea>
+        <div class="pi-actions hidden" id="pi-actions">
+          <div style="position:relative">
+            <button class="pi-action-btn" id="pi-model-btn" title="Select model" aria-label="Select model">
+              <img id="pi-model-icon" src="${MODELS[0].icon}" alt="" width="14" height="14">
+              <span id="pi-model-name">${MODELS[0].id}</span>
+            </button>
+            <div class="pi-model-menu hidden" id="pi-model-menu">
+              ${MODELS.map((m,i)=>`<button class="pi-model-opt" data-idx="${i}"><img src="${m.icon}" alt="" width="14" height="14"> ${m.id}</button>`).join("")}
+            </div>
+          </div>
+          <button class="pi-action-btn" id="pi-effort-btn" title="Cycle effort">
+            <svg id="pi-effort-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <rect x="1.5" y="8" width="2.5" height="4.5" rx="1" fill="currentColor"/>
+              <rect x="5.75" y="5" width="2.5" height="7.5" rx="1" fill="currentColor" id="pi-bar2" opacity="1"/>
+              <rect x="10" y="2" width="2.5" height="10.5" rx="1" fill="currentColor" id="pi-bar3" opacity="0.3"/>
+            </svg>
+            <span id="pi-effort-label">${EFFORTS[1]}</span>
+          </button>
+          <button class="pi-clear" id="pi-clear-btn" title="Clear chat" style="margin-left:auto">↺</button>
+          <button class="pi-action-btn" id="pi-key-btn" title="API key" style="margin-left:4px">⚙</button>
+        </div>
+        <div class="pi-wave" id="pi-wave">
+          ${[0,1,2,3,4].map(i=>`<div class="bar" id="pi-wbar${i}" style="height:4px"></div>`).join("")}
+        </div>
+        <button class="pi-send show-mic" id="pi-send" aria-label="Send prompt">
+          <svg class="ico-arr" width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 12V2M7 2L2.5 6.5M7 2L11.5 6.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg class="ico-mic" width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="5" y="1" width="4" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2.75 6.5V7a4.25 4.25 0 0 0 8.5 0v-.5M7 11.25V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg class="ico-stop" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </div>`;
+
+  const wrap=$("pi-wrap"),card=$("pi-card"),ph=$("pi-ph"),ta=$("pi-ta"),
+        actions=$("pi-actions"),sendBtn=$("pi-send"),wave=$("pi-wave"),
+        topFade=$("pi-top-fade"),botFade=$("pi-bot-fade"),
+        modelBtn=$("pi-model-btn"),modelIcon=$("pi-model-icon"),modelName=$("pi-model-name"),
+        modelMenu=$("pi-model-menu"),effortBtn=$("pi-effort-btn"),
+        effortLabel=$("pi-effort-label"),bar2=document.getElementById("pi-bar2"),bar3=document.getElementById("pi-bar3"),
+        clearBtn=$("pi-clear-btn"),keyBtn=$("pi-key-btn");
+
+  const SPRING="height .4s cubic-bezier(.175,.885,.32,1.275)";
+  const SMOOTH="height .15s ease-out";
+  let smooth=false;
+  function setTransition(s){card.style.transition=s?SMOOTH:SPRING}
+
+  function getValue(){return ta.value}
+  function hasValue(){return ta.value.trim()!==""}
+
+  function syncHeight(){
+    ta.style.height="0px";
+    const sh=ta.scrollHeight;
+    const h=Math.max(52,Math.min(sh,160));
+    ta.style.height=h+"px";
+    ta.classList.toggle("scrollable",sh>160);
+    // card height = textarea height + 48 (bottom actions row)
+    card.style.height=(Math.max(104,h+52))+"px";
+    botFade.style.top=(h-26)+"px";
+    updateFades();
+  }
+
+  function updateFades(){
+    const {scrollTop,scrollHeight,clientHeight}=ta;
+    topFade.style.opacity=Math.min(scrollTop/20,1);
+    const bot=scrollHeight-clientHeight-scrollTop;
+    botFade.style.opacity=Math.min(Math.max(bot-16,0)/10,1);
+  }
+
+  function expand(){
+    if(expanded)return;
+    expanded=true;
+    ph.classList.add("hidden");
+    ta.classList.remove("hidden");
+    actions.classList.remove("hidden");
+    card.style.overflow="visible";
+    syncHeight();
+    setTimeout(()=>{ta.focus();const l=ta.value.length;ta.setSelectionRange(l,l)},50);
+  }
+
+  function collapse(){
+    if(!expanded||isRecording)return;
+    expanded=false;
+    ph.classList.remove("hidden");
+    ta.classList.add("hidden");
+    actions.classList.add("hidden");
+    card.style.height="52px";
+    card.style.overflow="hidden";
+    modelMenu.classList.add("hidden");
+    isModelMenuOpen=false;
+  }
+
+  function updateSendBtn(){
+    const sv=hasValue(),st=isRecording;
+    sendBtn.classList.toggle("show-mic",!sv&&!st);
+    sendBtn.classList.toggle("show-stop",st);
+    // when has value: neither show-mic nor show-stop → arrow visible
+    if(sv&&!st){sendBtn.classList.remove("show-mic");sendBtn.classList.remove("show-stop")}
+  }
+
+  function updateEffortIcon(){
+    const lv=EFFORTS[effortIdx];
+    bar2.style.opacity=(lv==="Medium"||lv==="Max Effort")?"1":"0.3";
+    bar3.style.opacity=(lv==="Max Effort")?"1":"0.3";
+    effortLabel.textContent=lv;
+  }
+
+  // Smooth wave update
+  function renderWave(){
+    for(let i=0;i<5;i++){
+      const b=document.getElementById("pi-wbar"+i);
+      if(b)b.style.height=Math.max(4,audioData[i]*28)+"px";
+    }
+  }
+
+  // ── Recording ──
+  function stopRecording(){
+    if(recognitionRef){try{recognitionRef.stop()}catch(e){}recognitionRef=null}
+    if(rafRef){cancelAnimationFrame(rafRef);rafRef=null}
+    if(streamRef){streamRef.getTracks().forEach(t=>t.stop());streamRef=null}
+    if(audioCtxRef){audioCtxRef.close();audioCtxRef=null}
+    if(demoInterval){clearInterval(demoInterval);demoInterval=null}
+    if(demoTextInterval){clearInterval(demoTextInterval);demoTextInterval=null}
+    isRecording=false;
+    audioData=[0,0,0,0,0];
+    renderWave();
+    wave.classList.remove("active");
+    updateSendBtn();
+  }
+
+  async function startRecording(){
+    if(!expanded)expand();
+    let stream=null;
+    try{if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)stream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){}
+    isRecording=true;
+    wave.classList.add("active");
+    updateSendBtn();
+
+    function simulateText(){
+      const words="Can you explain this topic in simple terms with examples?".split(" ");
+      let i=0,base=ta.value;
+      demoTextInterval=setInterval(()=>{
+        if(i<words.length){base=(base?base+" ":"")+words[i++];ta.value=base;syncHeight();updateSendBtn()}
+        else stopRecording();
+      },280);
+    }
+
+    if(stream){
+      streamRef=stream;
+      const AC=window.AudioContext||(window).webkitAudioContext;
+      if(AC){
+        const ctx=new AC();audioCtxRef=ctx;
+        const analyser=ctx.createAnalyser();analyser.fftSize=64;
+        ctx.createMediaStreamSource(stream).connect(analyser);
+        const arr=new Uint8Array(analyser.frequencyBinCount);
+        const tick=()=>{
+          analyser.getByteFrequencyData(arr);
+          const step=Math.floor(arr.length/5);
+          audioData=Array.from({length:5},(_,i)=>{let s=0;for(let j=0;j<step;j++)s+=arr[i*step+j];return s/step/255});
+          renderWave();
+          rafRef=requestAnimationFrame(tick);
+        };
+        tick();
+      }
+      const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+      if(SR){
+        const r=new SR();r.continuous=true;r.interimResults=true;
+        let baseline=ta.value;
+        r.onresult=ev=>{
+          let inter="",fin="";
+          for(let i=ev.resultIndex;i<ev.results.length;++i){
+            if(ev.results[i].isFinal)fin+=ev.results[i][0].transcript;
+            else inter+=ev.results[i][0].transcript;
+          }
+          if(fin)baseline+=(baseline?" ":"")+fin;
+          ta.value=(baseline+(inter?" "+inter:"")).trim();
+          syncHeight();updateSendBtn();
+        };
+        r.onerror=()=>stopRecording();
+        r.onend=()=>stopRecording();
+        recognitionRef=r;r.start();
+      }else simulateText();
+      demoInterval=setInterval(()=>{if(!rafRef){audioData=Array.from({length:5},()=>Math.random()*.7+.1);renderWave()}},100);
+    }else{
+      demoInterval=setInterval(()=>{audioData=Array.from({length:5},()=>Math.random()*.7+.1);renderWave()},100);
+      simulateText();
+    }
+  }
+
+  function doSubmit(){
+    const q=ta.value.trim();
+    if(!q)return;
+    ask(q);
+    ta.value="";
+    smooth=true;setTransition(true);
+    syncHeight();
+    updateSendBtn();
+    setTimeout(()=>{smooth=false;setTransition(false)},200);
+  }
+
+  // ── Events ──
+  ph.onclick=expand;
+  card.onmousedown=e=>{if(e.target!==ta&&!isRecording){e.preventDefault();if(expanded)ta.focus();else expand()}};
+  ta.oninput=()=>{smooth=true;setTransition(true);syncHeight();updateSendBtn();if(!expanded&&ta.value)expand();setTimeout(()=>{smooth=false;setTransition(false)},200)};
+  ta.onscroll=updateFades;
+  ta.onkeydown=e=>{
+    e.stopPropagation();
+    if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();doSubmit()}
+    if(e.key==="Escape"&&!ta.value.trim()){collapse()}
+  };
+  ta.onblur=()=>{setTimeout(()=>{if(!root.contains(document.activeElement)&&!ta.value.trim()&&!isRecording)collapse()},120)};
+
+  sendBtn.onmousedown=e=>{e.preventDefault();e.stopPropagation()};
+  sendBtn.onclick=e=>{
+    e.stopPropagation();
+    if(isRecording)stopRecording();
+    else if(hasValue())doSubmit();
+    else startRecording();
+  };
+
+  modelBtn.onmousedown=e=>e.preventDefault();
+  modelBtn.onclick=e=>{e.stopPropagation();isModelMenuOpen=!isModelMenuOpen;modelMenu.classList.toggle("hidden",!isModelMenuOpen)};
+  modelMenu.querySelectorAll(".pi-model-opt").forEach(b=>{
+    b.onmousedown=e=>e.preventDefault();
+    b.onclick=e=>{e.stopPropagation();selectedModel=+b.dataset.idx;modelIcon.src=MODELS[selectedModel].icon;modelName.textContent=MODELS[selectedModel].id;isModelMenuOpen=false;modelMenu.classList.add("hidden")};
+  });
+
+  effortBtn.onmousedown=e=>e.preventDefault();
+  effortBtn.onclick=e=>{e.stopPropagation();effortIdx=(effortIdx+1)%EFFORTS.length;updateEffortIcon()};
+
+  clearBtn.onmousedown=e=>e.preventDefault();
+  clearBtn.onclick=e=>{e.stopPropagation();chat.length=0;renderChat()};
+
+  keyBtn.onmousedown=e=>e.preventDefault();
+  keyBtn.onclick=e=>{e.stopPropagation();renderChat(true)};
+
+  document.addEventListener("mousedown",e=>{
+    if(isModelMenuOpen&&!modelMenu.contains(e.target)&&!modelBtn.contains(e.target)){isModelMenuOpen=false;modelMenu.classList.add("hidden")}
+  },{capture:true});
+
+  // Initial state
+  card.style.height="52px";
+  card.style.overflow="hidden";
+  updateEffortIcon();
+  updateSendBtn();
 }
 function ldPath(l){
   if(!(window.gsap&&window.ScrollTrigger)||matchMedia("(prefers-reduced-motion: reduce)").matches)return null;
