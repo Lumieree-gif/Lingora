@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -203,10 +203,6 @@ html.ld-on main{display:none}html.ld-on #isl,html.ld-on #mo,html.ld-on #fabw{dis
 .ld-bd text{font:700 15px var(--f-sans);letter-spacing:2px;fill:#14102e}
 @keyframes sp{to{transform:rotate(360deg)}}
 .ld-bd b{font-size:28px}
-.pc{position:absolute;width:110px;height:110px;display:flex;justify-content:center;align-items:center}
-.pm{width:76px;height:76px}
-.pbox{width:54px;height:54px;box-sizing:border-box;border:2px solid #c4b5fd;border-radius:9px;rotate:45deg;background:linear-gradient(135deg,rgba(196,181,253,.28),rgba(196,181,253,.06));box-shadow:0 0 16px rgba(196,181,253,.4);opacity:0;will-change:transform}
-#ld.cube .pbox{opacity:.7}
 @media(min-width:1000px){.ld-s{width:min(960px,calc(100% - 340px))}}
 .pv{width:min(580px,100%);margin:34px auto 0;border-radius:20px;background:var(--card);border:1px solid var(--bd);overflow:hidden;box-shadow:0 30px 70px -30px #000;text-align:left;font-family:var(--f-sans);color:var(--tx)}
 .pvb{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--bd)}
@@ -231,10 +227,8 @@ html.ld-on main{display:none}html.ld-on #isl,html.ld-on #mo,html.ld-on #fabw{dis
 .sc4 svg{width:100%;height:auto}
 .pvc{fill:none;stroke:#c4b5fd;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
 .pvp{fill:#c4b5fd}.pvx{stroke:var(--bd);stroke-width:1}
-.pw{position:absolute;left:50%;top:50%;width:0;height:0;rotate:-45deg;pointer-events:none}
-.pw i{position:absolute;left:var(--x);top:-60px;width:1.5px;height:var(--h);border-radius:2px;background:linear-gradient(transparent,#c4b5fd,transparent);opacity:0;will-change:transform,opacity}
 @media(min-width:1000px){.ld-s:not(.hr){max-width:min(960px,calc(100% - 340px))}}
-@media(max-width:999px){.ld-s:not(.hr){padding-right:46px}.pbox{width:28px;height:28px}#ld.cube .pbox{opacity:.95}}@media(max-width:700px){.ld-bd{top:auto;bottom:2%}}
+@media(max-width:999px){.ld-s:not(.hr){padding-left:46px;padding-right:46px}.pbox{width:20px;height:30px}}@media(max-width:700px){.ld-bd{top:auto;bottom:2%}}
 /* ===== Chat AI di Home ===== */
 #cw.home{position:static;display:block!important;width:auto;height:auto;max-height:none;margin:22px 0 28px;padding:30px 22px 22px;transform:none;opacity:1;pointer-events:all;overflow:visible;border:1px solid rgba(255,255,255,.1);border-radius:26px;color:#f6eedc;background:radial-gradient(ellipse at 50% 0,rgba(168,85,247,.16),transparent 65%),rgba(8,9,18,.8);box-shadow:0 24px 60px -30px #000}
 #cw.home #cb{display:block}
@@ -346,6 +340,41 @@ body.ct-on #smooth-wrapper{visibility:hidden}
 .ct-g small{display:block;margin-top:6px;font-weight:400;color:var(--mu)}
 .ct-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media(max-width:700px){.ct-t{top:70px}.ct-cap{bottom:104px}}
+
+/* ===== Tab AI tutor: animasi masuk ===== */
+.aiv>*{animation:aiUp .7s cubic-bezier(.2,.8,.2,1) both}
+.aiv>.hh{animation-delay:.08s}.aiv>#arc{animation-delay:.16s}.aiv>#hc{animation-delay:.26s}
+@keyframes aiUp{from{opacity:0;transform:translateY(22px) scale(.98);filter:blur(6px)}}
+.aiv .bb{animation:aiPop .45s cubic-bezier(.34,1.4,.5,1) both}
+@keyframes aiPop{from{opacity:0;transform:translateY(10px) scale(.94)}}
+/* ===== Archive: folder kaca ===== */
+#arc{margin:4px 0 6px}
+.gf{--k:1;--hg:0deg;--lf:42px;--sp:0px;--fa:0deg;--stk:15px;position:relative;width:calc(340px*var(--k));height:calc(326px*var(--k))}
+.gf:hover,.gf:focus-within{--hg:-11deg;--lf:-34px;--sp:8px;--fa:1.4deg;--stk:10px}
+.gf[data-open]{--hg:-24deg;--lf:-96px;--sp:40px;--fa:5deg;--stk:30px}
+.gf-st{position:absolute;left:0;top:calc(54px*var(--k));width:340px;height:272px;transform-origin:0 0;transform:scale(var(--k))}
+.gf-sh{position:absolute;left:18px;right:18px;bottom:-6px;height:56px;border-radius:40px;background:rgba(10,12,30,.4);filter:blur(22px)}
+.gf-bk{position:absolute;inset:0;clip-path:path('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z');background:radial-gradient(110% 90% at 15% 0,#c026d3,transparent 58%),radial-gradient(100% 90% at 92% 85%,#4338ca,transparent 62%),linear-gradient(160deg,#3b2370,#0b1431)}
+.gf-fl{position:absolute;inset:0;z-index:5;pointer-events:none;clip-path:inset(-400px -400px 10px -400px)}
+.gf-sheet{all:unset;box-sizing:border-box;position:absolute;left:34px;top:96px;width:272px;height:184px;padding:12px 14px;border-radius:16px;cursor:pointer;pointer-events:auto;background:linear-gradient(180deg,#fff,#f1ecff);color:#18132b;box-shadow:0 10px 26px -8px rgba(10,12,30,.4);transform-origin:50% 100%;transform:translate(calc(var(--s)*var(--sp)),calc(var(--lf) - var(--d)*var(--stk))) rotate(calc(var(--s)*var(--fa)));transition:transform .75s cubic-bezier(.34,1.36,.5,1) calc(var(--d)*40ms)}
+.gf[data-open] .gf-sheet:hover,.gf-sheet:focus-visible{transform:translate(calc(var(--s)*var(--sp)),calc(var(--lf) - var(--d)*var(--stk) - 18px));transition-delay:0s;outline:2px solid #c4b5fd}
+.gf-sheet b{display:block;font:560 13px system-ui,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gf-sheet small{display:block;margin-top:3px;font:10px ui-monospace,monospace;color:#6b6585}
+.gf-fr{position:absolute;left:0;top:74px;width:340px;height:198px;z-index:10;clip-path:path('M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 176A22 22 0 0 1 318 198L22 198A22 22 0 0 1 0 176Z');-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.4) 45%,rgba(20,16,44,.55));transform-origin:50% 100%;transform:perspective(760px) rotateX(var(--hg));transition:transform .8s cubic-bezier(.34,1.36,.5,1)}
+.gf-hit{all:unset;position:absolute;inset:0;cursor:pointer}
+.gf-hit:focus-visible{outline:3px solid #c4b5fd;outline-offset:-3px}
+.gf-lb{position:absolute;left:28px;bottom:30px;color:#fff;pointer-events:none}
+.gf-lb b{display:block;font:500 18px/1.15 system-ui,sans-serif}
+.gf-lb small{font:12px ui-monospace,monospace;opacity:.75}
+.gf-key{all:unset;position:absolute;right:22px;bottom:22px;z-index:12;width:48px;height:48px;border-radius:16px;display:grid;place-items:center;cursor:pointer;color:#fff;background:rgba(10,12,30,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 10px 18px -8px rgba(0,0,0,.6);transition:transform .35s cubic-bezier(.34,1.36,.5,1)}
+.gf-key:hover{transform:translateY(-2px)}
+.gf-key svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.gf-empty{margin:-6px 0 10px;font-size:.9rem;color:var(--mu)}
+@media(prefers-reduced-motion:reduce){.gf *{transition-duration:0s!important}}
+/* ===== Waypoint belah ketupat ===== */
+.pbox{position:absolute;left:0;top:0;width:24px;height:36px;opacity:0;pointer-events:none;will-change:transform;filter:drop-shadow(0 0 8px rgba(196,181,253,.55))}
+.pbox i{display:block;width:100%;height:100%;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:linear-gradient(180deg,#f5f3ff,#c4b5fd 45%,#6d5de8)}
+#ld.cube .pbox{opacity:1}
 </style>
 </head>
 <body>
@@ -841,10 +870,34 @@ function coursesTab(){
   CT={kill(){clearTimeout(idle);document.removeEventListener("keydown",onKey);scrub.kill();loop.kill();gsap.killTweensOf(cards);el.remove();document.body.classList.remove("ct-on")}};
   FX.push(CT);
 }
+const ARCK="qz-arc";
+const arcGet=()=>{try{return JSON.parse(ST.get(ARCK)||"[]")}catch(e){return[]}};
+const arcSet=a=>ST.set(ARCK,JSON.stringify(a.slice(-24)));
+const arcHas=id=>arcGet().some(x=>x.id===id);
+const topicText=t=>(t.n?t.n+". ":"")+(t.c?t.c.map(x=>x[0]+": "+x[1]).join(" "):t.r?t.r.map(r=>r[0]+" /"+r[1]+"/ "+r[2]).join("; "):"");
+function arcCtx(){const a=arcGet();return a.length?"\nThe student saved these notes in their archive. Use them when asked:\n"+a.map(x=>"- "+x.n+" ("+x.m+"): "+x.x.slice(0,700)).join("\n").slice(0,6000):""}
+function mountArchive(){
+  const h=$("arc");if(!h)return;
+  const a=arcGet(),n=a.length,vis=a.slice(-4),off=n-vis.length;
+  h.innerHTML=`<div class="gf" id="gf"><div class="gf-st"><div class="gf-sh"></div><div class="gf-bk"></div>
+    <div class="gf-fl" id="gfl">${vis.map((x,v)=>`<button class="gf-sheet" data-i="${off+v}" style="--s:${vis.length>1?(v/(vis.length-1)*2-1).toFixed(2):0};--d:${vis.length-1-v};z-index:${v+1}"><b>${esc(x.n)}</b><small>${esc(x.m)}</small></button>`).join("")}</div>
+    <div class="gf-fr"><button class="gf-hit" id="gfh" aria-expanded="false" aria-label="Archive, ${n} items"></button><div class="gf-lb"><b>Archive</b><small>${n} ${n===1?"item":"items"}</small></div></div>
+    ${n?'<button class="gf-key" id="gfc" aria-label="Clear archive"><svg viewBox="0 0 24 24"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></svg></button>':""}</div></div>${n?"":'<p class="gf-empty">Tap ☆ Save on a topic to keep it here.</p>'}`;
+  const g=$("gf"),fl=$("gfl"),hit=$("gfh");let open=false;
+  const set=o=>{open=o;g.toggleAttribute("data-open",o);hit.setAttribute("aria-expanded",o);fl.inert=!o};set(false);
+  const fit=()=>g.style.setProperty("--k",Math.min(1,(h.clientWidth||340)/340)),ro=new ResizeObserver(fit);fit();ro.observe(h);
+  const out=e=>{if(!g.contains(e.target))set(false)};document.addEventListener("pointerdown",out);
+  FX.push({kill(){ro.disconnect();document.removeEventListener("pointerdown",out)}});
+  hit.onclick=()=>set(!open);
+  g.onkeydown=e=>{if(e.key==="Escape"){set(false);hit.focus()}};
+  fl.onclick=e=>{const b=e.target.closest(".gf-sheet");if(!b)return;const x=arcGet()[+b.dataset.i];set(false);if(x)ask('Explain "'+x.n+'" from my archive in simple words.')};
+  const c=$("gfc");if(c)c.onclick=()=>{if(confirm("Clear the archive?")){arcSet([]);mountArchive()}};
+}
 function aiPage(){
   view="ai";ctx="AI tutor";
-  app.innerHTML=`<span class="tag">AI tutor</span><h1 class="hh">Stuck? Ask the tutor.</h1><p>Short explanations with examples, powered by Gemini. Add your own API key with the ⚙ button in the chat box.</p><div id="hc"></div>`;
-  mountAI();
+  app.innerHTML=`<span class="tag">AI tutor</span><h1 class="hh">Ask the tutor.</h1><div id="arc"></div><div id="hc"></div>`;
+  app.innerHTML=`<div class="aiv">${app.innerHTML}</div>`;
+  mountAI();mountArchive();
   if(matchMedia("(hover:hover)").matches)setTimeout(()=>{const x=$("ci")||$("ki");x&&x.focus()},60);
 }
 function home(){
@@ -918,11 +971,12 @@ function topic(k){
   if(!seen.includes(k)){seen.push(k);ST.set("qz-"+cid+"-seen",JSON.stringify(seen))}
   const body=t.c?t.c.map((c,n)=>`<div class="cc" style="--d:${n*.05}s"><b>${esc(c[0])}</b><span>${esc(c[1])}</span></div>`).join("")
    :t.r.map((r,n)=>`<button class="w" style="--d:${Math.min(n,14)*.03}s" data-s="${esc(r[0])}"><span class="wd">${esc(r[0])}<small>${esc(r[2])}</small></span><span class="ip ${hide?"hid":""}">${esc(r[1])}</span><i>🔊</i></button>`).join("");
-  const last=k===TOP.length-1;
+  const last=k===TOP.length-1,aid=cid+"-"+k;
   app.innerHTML=`<button class="x" id="bk">← Topics</button><span class="tag" style="display:block;margin-top:16px">Topic ${k+1} of ${TOP.length}</span><h1 class="hh">${t.t}</h1><p>${esc(t.n)}</p>
-  <div class="row" style="margin-bottom:14px"><a class="chip" target="_blank" rel="noopener" href="${yt(COURSES[cur],t)}">▶ Watch on YouTube</a>${t.r?`<button class="chip ${hide?"on":""}" id="hd">Test mode: hide IPA</button>`:""}</div>
+  <div class="row" style="margin-bottom:14px"><a class="chip" target="_blank" rel="noopener" href="${yt(COURSES[cur],t)}">▶ Watch on YouTube</a>${t.r?`<button class="chip ${hide?"on":""}" id="hd">Test mode: hide IPA</button>`:""}<button class="chip ${arcHas(aid)?"on":""}" id="sv">${arcHas(aid)?"★ Saved":"☆ Save"}</button></div>
   <div id="bd">${body}</div><div class="row">${k>0?`<button class="btn ghost" id="pv">← Previous</button>`:""}<button class="btn" id="nx">${last?"Take the quiz →":"Next →"}</button></div>`;
   $("bk").onclick=()=>nav(belajar);
+  $("sv").onclick=()=>{let a=arcGet();const on=a.some(x=>x.id===aid);a=on?a.filter(x=>x.id!==aid):[...a,{id:aid,n:t.t,m:COURSES[cur].t,x:topicText(t)}];arcSet(a);$("sv").classList.toggle("on",!on);$("sv").textContent=on?"☆ Save":"★ Saved";say(on?"Removed":"Saved to archive")};
   $("nx").onclick=()=>nav(last?quizMenu:()=>topic(k+1));
   if($("pv"))$("pv").onclick=()=>nav(()=>topic(k-1));
   if($("hd"))$("hd").onclick=()=>{hide=!hide;$("hd").classList.toggle("on",hide);document.querySelectorAll(".ip").forEach(e=>e.classList.toggle("hid",hide))};
@@ -1116,7 +1170,7 @@ async function saveKey(){
 function renderChat(force){
   const saved=ST.get("lg-key");
   if(!saved||force){
-    $("cb").innerHTML=`<div class="kp"><b>Connect Gemini</b><p>Paste your Gemini API key to chat with the tutor. It is saved only in this browser and sent only to Google.</p><input id="ki" class="inp" type="password" placeholder="Gemini API key" autocomplete="off" spellcheck="false"><div id="ke" class="kerr"></div><div class="row"><button class="btn" id="ks">Save key</button><a class="chip" target="_blank" rel="noopener" href="https://aistudio.google.com/apikey">Get a key</a>${saved?'<button class="chip" id="kb">Back to chat</button><button class="chip" id="kr">Remove key</button>':""}</div></div>`;
+    $("cb").innerHTML=`<div class="kp"><b>Connect Gemini</b><p>Paste your API key. It stays in this browser.</p><input id="ki" class="inp" type="password" placeholder="Gemini API key" autocomplete="off" spellcheck="false"><div id="ke" class="kerr"></div><div class="row"><button class="btn" id="ks">Save key</button><a class="chip" target="_blank" rel="noopener" href="https://aistudio.google.com/apikey">Get a key</a>${saved?'<button class="chip" id="kb">Back to chat</button><button class="chip" id="kr">Remove key</button>':""}</div></div>`;
     const ki=$("ki");
     ki.onkeydown=e=>{e.stopPropagation();if(e.key==="Enter")saveKey()};
     ki.oninput=()=>{ki.classList.remove("err");$("ke").textContent=""};
@@ -1127,16 +1181,16 @@ function renderChat(force){
     }
     return;
   }
-  $("cb").innerHTML=`<div class="ah"><h3>How can I help today?</h3><p>Type a command or ask a question</p></div><div id="cm2"></div><div class="ab"><textarea id="ci" rows="3" placeholder="Ask Lingora a question…" autocomplete="off"></textarea><div class="ar"><span><button class="ib" id="cr" title="Clear chat">↺</button><button class="ib" id="cg" title="API key">⚙</button></span><button class="sd" id="cs">Send ➤</button></div></div><div class="qc">${["Explain this topic simply","Give me 3 examples","Quiz me on this","Improve my sentence"].map(t=>`<button class="chip">${t}</button>`).join("")}</div>`;
   // Build morphing prompt-input chat UI
-  $("cb").innerHTML=`<div class="ah"><h3>How can I help today?</h3><p>Ask about any topic, exercise, or quiz.</p></div><div id="cm2"></div><div id="pi-root" style="margin-top:14px"></div><div class="qc">${["Explain this topic simply","Give me 3 examples","Quiz me on this","Improve my sentence"].map(t=>`<button class="chip">${t}</button>`).join("")}</div>`;
-  bub("a","Hi! I'm your Lingora tutor. Ask me about any topic, exercise, or quiz question.");
+  $("cb").innerHTML=`<div class="ah"><h3>How can I help today?</h3></div><div id="cm2"></div><div id="pi-root" style="margin-top:14px"></div><div class="qc">${[["Explain","Explain this topic simply"],["Examples","Give me 3 examples"],["Quiz me","Quiz me on this"],["Fix my sentence","Improve my sentence"]].map(t=>`<button class="chip" data-q="${t[1]}">${t[0]}</button>`).join("")}</div>`;
+  bub("a","Hi! What are you studying?");
   chat.forEach(m=>bub(m.role==="user"?"u":"a",m.role==="user"?esc(m.parts[0].text):fmt(m.parts[0].text)));
   mountPromptInput($("pi-root"));
-  document.querySelectorAll(".qc .chip").forEach(b=>b.onclick=()=>{const ci=$("pi-ta");if(ci){ci.value=b.textContent;ci.dispatchEvent(new Event("input"))}setTimeout(()=>ask(b.textContent),0)});
+  document.querySelectorAll(".qc .chip").forEach(b=>b.onclick=()=>{setTimeout(()=>ask(b.dataset.q),0)});
   $("cm2").scrollTop=1e6;
 }
 const MAX_TURNS=8;
+let PREF=0,EFF=1;
 async function ask(q){
   q=(q||"").trim();
   if(!q||thinking)return;
@@ -1147,15 +1201,15 @@ async function ask(q){
   chat.push({role:"user",parts:[{text:q}]});
   const ci=$("ci");if(ci)ci.value="";
   const el=bub("a",'<span class="dots"><i></i><i></i><i></i></span>');
-  const sys="You are Lingora’s AI tutor for English Education students. Reply in clear English, in under 170 words unless asked for more, with short examples. The student is currently studying: "+(ctx||"the Lingora home page")+".";
+  const sys="You are Lingora’s AI tutor for English Education students. Reply in clear English, in under 170 words unless asked for more, with short examples. The student is currently studying: "+(ctx||"the Lingora home page")+"."+["\nKeep it very short.","","\nBe thorough, with a few examples."][EFF]+arcCtx();
   const turns=chat.slice(-MAX_TURNS);
   while(turns.length&&turns[0].role!=="user")turns.shift();
   const scroll=()=>{const cm=$("cm2");if(cm)cm.scrollTop=1e9};
   let out="",err="";
   try{
-    for(const {m,cfg} of MODELS){
+    for(const {m,cfg} of [MODELS[PREF],...MODELS.filter((_,i)=>i!==PREF)]){
       try{
-        const body=JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents:turns,generationConfig:Object.assign({maxOutputTokens:600,temperature:.7},cfg)});
+        const body=JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents:turns,generationConfig:Object.assign({maxOutputTokens:[350,600,1000][EFF],temperature:.7},cfg)});
         const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+m+":streamGenerateContent?alt=sse",{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},body});
         if(!r.ok){
           const j=await r.json().catch(()=>({}));
@@ -1194,8 +1248,8 @@ async function ask(q){
     else{
       chat.pop();
       el.classList.add("err");
-      el.innerHTML=esc(err||"No response from the model.")+"<br><small>Check your key with the ⚙ button, then try again.</small>";
-      const c2=$("ci");if(c2)c2.value=q;
+      el.innerHTML=esc(err||"No response from the model.")+"<br><small>Check your key (⚙).</small>";
+      const c2=$("pi-ta");if(c2){c2.value=q;c2.dispatchEvent(new Event("input"))}
     }
     thinking=false;scroll();
   }
@@ -1208,17 +1262,12 @@ function mountAI(){
 // ── Morphing Prompt Input (vanilla port of the React component) ──────────────
 function mountPromptInput(root){
   if(!root)return;
-  const MODELS=[
-    {id:"GPT 5.5",    icon:"https://cdn.21st.dev/assets/mirror/b9/b93fa7942be639a1dae60194ff12141145d7d9fd59581582d6ff23335755f19c.svg"},
-    {id:"Gemini 3.5 Flash",icon:"https://cdn.21st.dev/assets/mirror/cd/cda2df6631d5fa227de3fa04ed78cf354f910ba92a9f086e7455655c10ad9d09.svg"},
-    {id:"Opus 4.8",   icon:"https://cdn.21st.dev/assets/mirror/5d/5de1221c77cc91e748066fd642ad0eee1c1fa65328814f5178166f901e599709.svg"},
-    {id:"Composer 2.5",icon:"https://cdn.21st.dev/assets/mirror/7d/7dc00bc09f225fcda46cbc9c6b669c69c025a231877d6c17baa6a003f04f02b2.svg"},
-    {id:"GLM 5.2",    icon:"https://cdn.21st.dev/assets/mirror/b2/b2a6c0ff63efd8a555edf8a174ea6fcfeca120ac1595a2d461ca11d3ae89276c.svg"}
-  ];
-  const EFFORTS=["Low","Medium","Max Effort"];
+  const GS='<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.6 5.6 4.4 9.4 10 10-5.6.6-9.4 4.4-10 10-.6-5.6-4.4-9.4-10-10 5.6-.6 9.4-4.4 10-10z" fill="currentColor"/></svg>';
+  const GM=[{id:"3.5 Flash Lite"},{id:"3.5 Flash"},{id:"2.5 Flash"}];
+  const EFFORTS=["Fast","Normal","Deep"];
   const EFFORT_BARS=[1,2,3];
 
-  let expanded=false,selectedModel=0,effortIdx=1,isRecording=false;
+  let expanded=false,selectedModel=PREF,effortIdx=EFF,isRecording=false;
   let streamRef=null,audioCtxRef=null,rafRef=null,recognitionRef=null,demoInterval=null,demoTextInterval=null;
   let audioData=[0,0,0,0,0];
   let isModelMenuOpen=false;
@@ -1229,16 +1278,16 @@ function mountPromptInput(root){
       <div class="pi-card" id="pi-card">
         <div class="pi-top-fade" id="pi-top-fade"></div>
         <div class="pi-bot-fade" id="pi-bot-fade"></div>
-        <div class="pi-placeholder" id="pi-ph">Ask Lingora a question…</div>
-        <textarea class="pi-textarea hidden" id="pi-ta" placeholder="Ask Lingora a question…" autocomplete="off" rows="1" aria-label="Prompt"></textarea>
+        <div class="pi-placeholder" id="pi-ph">Ask anything…</div>
+        <textarea class="pi-textarea hidden" id="pi-ta" placeholder="Ask anything…" autocomplete="off" rows="1" aria-label="Prompt"></textarea>
         <div class="pi-actions hidden" id="pi-actions">
           <div style="position:relative">
             <button class="pi-action-btn" id="pi-model-btn" title="Select model" aria-label="Select model">
-              <img id="pi-model-icon" src="${MODELS[0].icon}" alt="" width="14" height="14">
-              <span id="pi-model-name">${MODELS[0].id}</span>
+              ${GS}
+              <span id="pi-model-name">${GM[PREF].id}</span>
             </button>
             <div class="pi-model-menu hidden" id="pi-model-menu">
-              ${MODELS.map((m,i)=>`<button class="pi-model-opt" data-idx="${i}"><img src="${m.icon}" alt="" width="14" height="14"> ${m.id}</button>`).join("")}
+              ${GM.map((m,i)=>`<button class="pi-model-opt" data-idx="${i}">${GS} ${m.id}</button>`).join("")}
             </div>
           </div>
           <button class="pi-action-btn" id="pi-effort-btn" title="Cycle effort">
@@ -1331,8 +1380,8 @@ function mountPromptInput(root){
 
   function updateEffortIcon(){
     const lv=EFFORTS[effortIdx];
-    bar2.style.opacity=(lv==="Medium"||lv==="Max Effort")?"1":"0.3";
-    bar3.style.opacity=(lv==="Max Effort")?"1":"0.3";
+    bar2.style.opacity=(lv!=="Fast")?"1":"0.3";
+    bar3.style.opacity=(lv==="Deep")?"1":"0.3";
     effortLabel.textContent=lv;
   }
 
@@ -1344,78 +1393,31 @@ function mountPromptInput(root){
     }
   }
 
-  // ── Recording ──
+  // ── Voice to text (Web Speech API) ──
+  let waveTimer=null,pulse=0;
   function stopRecording(){
-    if(recognitionRef){try{recognitionRef.stop()}catch(e){}recognitionRef=null}
-    if(rafRef){cancelAnimationFrame(rafRef);rafRef=null}
-    if(streamRef){streamRef.getTracks().forEach(t=>t.stop());streamRef=null}
-    if(audioCtxRef){audioCtxRef.close();audioCtxRef=null}
-    if(demoInterval){clearInterval(demoInterval);demoInterval=null}
-    if(demoTextInterval){clearInterval(demoTextInterval);demoTextInterval=null}
-    isRecording=false;
-    audioData=[0,0,0,0,0];
-    renderWave();
-    wave.classList.remove("active");
-    updateSendBtn();
+    if(recognitionRef){const r=recognitionRef;recognitionRef=null;r.onend=r.onerror=null;try{r.stop()}catch(e){}}
+    clearInterval(waveTimer);waveTimer=null;
+    isRecording=false;audioData=[0,0,0,0,0];renderWave();wave.classList.remove("active");updateSendBtn();
   }
-
-  async function startRecording(){
+  function startRecording(){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){say("Voice input needs Chrome, Edge or Safari.");return}
     if(!expanded)expand();
-    let stream=null;
-    try{if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)stream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e){}
-    isRecording=true;
-    wave.classList.add("active");
-    updateSendBtn();
-
-    function simulateText(){
-      const words="Can you explain this topic in simple terms with examples?".split(" ");
-      let i=0,base=ta.value;
-      demoTextInterval=setInterval(()=>{
-        if(i<words.length){base=(base?base+" ":"")+words[i++];ta.value=base;syncHeight();updateSendBtn()}
-        else stopRecording();
-      },280);
-    }
-
-    if(stream){
-      streamRef=stream;
-      const AC=window.AudioContext||(window).webkitAudioContext;
-      if(AC){
-        const ctx=new AC();audioCtxRef=ctx;
-        const analyser=ctx.createAnalyser();analyser.fftSize=64;
-        ctx.createMediaStreamSource(stream).connect(analyser);
-        const arr=new Uint8Array(analyser.frequencyBinCount);
-        const tick=()=>{
-          analyser.getByteFrequencyData(arr);
-          const step=Math.floor(arr.length/5);
-          audioData=Array.from({length:5},(_,i)=>{let s=0;for(let j=0;j<step;j++)s+=arr[i*step+j];return s/step/255});
-          renderWave();
-          rafRef=requestAnimationFrame(tick);
-        };
-        tick();
-      }
-      const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-      if(SR){
-        const r=new SR();r.continuous=true;r.interimResults=true;
-        let baseline=ta.value;
-        r.onresult=ev=>{
-          let inter="",fin="";
-          for(let i=ev.resultIndex;i<ev.results.length;++i){
-            if(ev.results[i].isFinal)fin+=ev.results[i][0].transcript;
-            else inter+=ev.results[i][0].transcript;
-          }
-          if(fin)baseline+=(baseline?" ":"")+fin;
-          ta.value=(baseline+(inter?" "+inter:"")).trim();
-          syncHeight();updateSendBtn();
-        };
-        r.onerror=()=>stopRecording();
-        r.onend=()=>stopRecording();
-        recognitionRef=r;r.start();
-      }else simulateText();
-      demoInterval=setInterval(()=>{if(!rafRef){audioData=Array.from({length:5},()=>Math.random()*.7+.1);renderWave()}},100);
-    }else{
-      demoInterval=setInterval(()=>{audioData=Array.from({length:5},()=>Math.random()*.7+.1);renderWave()},100);
-      simulateText();
-    }
+    const r=new SR(),base=ta.value.trim();
+    r.lang="en-US";r.continuous=true;r.interimResults=true;
+    r.onstart=()=>{isRecording=true;pulse=.4;wave.classList.add("active");updateSendBtn();
+      waveTimer=setInterval(()=>{audioData=Array.from({length:5},()=>.1+Math.random()*.7*pulse);pulse*=.86;renderWave()},90)};
+    r.onsoundstart=r.onspeechstart=()=>{pulse=1};
+    r.onresult=ev=>{ /* seluruh hasil dihitung ulang tiap event, jadi kata tidak dobel */
+      pulse=1;let t="";for(let i=0;i<ev.results.length;i++)t+=ev.results[i][0].transcript;
+      ta.value=(base?base+" ":"")+t.trim();syncHeight();updateSendBtn();ta.scrollTop=ta.scrollHeight};
+    r.onerror=e=>{
+      const M={"not-allowed":"Microphone blocked. Allow it, and use https or localhost.","service-not-allowed":"Microphone blocked. Allow it, and use https or localhost.","no-speech":"I heard nothing. Try again.","audio-capture":"No microphone found.","network":"Voice needs an internet connection."};
+      if(e.error!=="aborted")say(M[e.error]||"Voice input stopped.")};
+    r.onend=()=>stopRecording();
+    recognitionRef=r;
+    try{r.start()}catch(e){recognitionRef=null;say("Could not start the microphone.")}
   }
 
   function doSubmit(){
@@ -1453,11 +1455,11 @@ function mountPromptInput(root){
   modelBtn.onclick=e=>{e.stopPropagation();isModelMenuOpen=!isModelMenuOpen;modelMenu.classList.toggle("hidden",!isModelMenuOpen)};
   modelMenu.querySelectorAll(".pi-model-opt").forEach(b=>{
     b.onmousedown=e=>e.preventDefault();
-    b.onclick=e=>{e.stopPropagation();selectedModel=+b.dataset.idx;modelIcon.src=MODELS[selectedModel].icon;modelName.textContent=MODELS[selectedModel].id;isModelMenuOpen=false;modelMenu.classList.add("hidden")};
+    b.onclick=e=>{e.stopPropagation();selectedModel=+b.dataset.idx;PREF=selectedModel;modelName.textContent=GM[selectedModel].id;isModelMenuOpen=false;modelMenu.classList.add("hidden")};
   });
 
   effortBtn.onmousedown=e=>e.preventDefault();
-  effortBtn.onclick=e=>{e.stopPropagation();effortIdx=(effortIdx+1)%EFFORTS.length;updateEffortIcon()};
+  effortBtn.onclick=e=>{e.stopPropagation();effortIdx=(effortIdx+1)%EFFORTS.length;EFF=effortIdx;updateEffortIcon()};
 
   clearBtn.onmousedown=e=>e.preventDefault();
   clearBtn.onclick=e=>{e.stopPropagation();chat.length=0;renderChat()};
@@ -1476,45 +1478,39 @@ function mountPromptInput(root){
   updateSendBtn();
 }
 function ldPath(l){
-  if(!(window.gsap&&window.ScrollTrigger)||matchMedia("(prefers-reduced-motion: reduce)").matches)return null;
+  if(!window.gsap||matchMedia("(prefers-reduced-motion: reduce)").matches)return null;
+  const box=l.querySelector(".pbox");if(!box)return null;
   l.classList.add("cube");
-  const box=l.querySelector(".pbox"),pcs=[...l.querySelectorAll(".pc")];let cx,t,stRef=null;
-  const place=()=>{ /* semua titik berhenti di gutter kanan, di samping teks (desktop dan mobile) */
-    const W=l.clientWidth,H=l.offsetHeight,vh=innerHeight,max=Math.max(1,H-vh),n=pcs.length,S=110,
-      g=W>=1000?(W-Math.min(960,W-340))/2:Math.round(Math.max(38,W*.11)),F=[.5,.3,.7,.34,.68];
-    pcs.forEach((c,i)=>{
-      const x=Math.min(W-24,W-g+g*F[i%F.length]);
-      c.style.left=Math.round(x-S/2)+"px";c.style.top=Math.round(i/Math.max(1,n-1)*max+vh/2-S/2)+"px";
-    });
+  const secs=[...l.querySelectorAll(":scope > .ld-s")];
+  let G=null,px=null;
+  const setX=gsap.quickSetter(box,"x","px"),setY=gsap.quickSetter(box,"y","px");
+  gsap.set(box,{xPercent:-50,yPercent:-50});
+  const measure=()=>{ /* sisi kiri/kanan di samping teks + celah antar bagian */
+    const W=l.clientWidth,desk=W>=1000,ct=desk?Math.min(960,W-340):W,gut=desk?(W-ct)/2:46,bounds=[];
+    for(let i=0;i<secs.length-1;i++){
+      const a=secs[i],b=secs[i+1],gap=b.offsetTop-(a.offsetTop+a.offsetHeight);
+      bounds.push({y:a.offsetTop+a.offsetHeight+gap/2,w:Math.max(12,gap*.4)});
+    }
+    G={XL:gut/2,XR:W-gut/2,bounds};
   };
-  const build=()=>{
-    cx&&cx.revert();place();
-    cx=gsap.context(()=>{
-      gsap.set(box,{x:0,y:0});
-      const r0=box.getBoundingClientRect(),x0=r0.left+r0.width/2,y0=r0.top+r0.height/2;
-      const pts=pcs.map(c=>{const r=(c.querySelector(".pm")||box).getBoundingClientRect();return{x:r.left+r.width/2-x0,y:r.top+r.height/2-y0}});
-      const tl=gsap.timeline({scrollTrigger:{start:0,end:()=>Math.max(1,l.offsetHeight-innerHeight),scrub:1,invalidateOnRefresh:true}});
-      if(window.MotionPathPlugin)tl.to(box,{duration:1,ease:"none",motionPath:{path:pts,curviness:1.2}});
-      else tl.to(box,{y:pts[pts.length-1].y,duration:1,ease:"none"});
-      stRef=tl.scrollTrigger;
-    });
+  const target=()=>{ /* y mengikuti tengah layar; x pindah sisi hanya saat tengah layar ada di celah antar bagian */
+    const y=innerHeight/2-l.getBoundingClientRect().top;
+    let v=0;
+    G.bounds.forEach((b,i)=>{const t=gsap.utils.clamp(0,1,(y-(b.y-b.w))/(2*b.w)),k=t*t*(3-2*t);v+=(i%2?-1:1)*k});
+    return{x:G.XR+(G.XL-G.XR)*gsap.utils.clamp(0,1,v),y};
   };
-  /* angin tipis: garis halus mengalir melewati kotak, kekuatannya mengikuti kecepatan scroll */
-  const lines=[...box.querySelectorAll(".pw i")],P=lines.map((_,i)=>i/lines.length),K=[1,1.4,.8,1.2,.9,1.5],setRot=gsap.quickSetter(box,"rotation","deg");
-  let sm=0,idle=true;
-  const tick=(time,dt)=>{
-    const v=stRef?gsap.utils.clamp(-1,1,stRef.getVelocity()/2600):0;
-    sm+=(v-sm)*.12;
-    if(Math.abs(sm)<.004&&Math.abs(v)<.004){if(!idle){idle=true;lines.forEach(n=>n.style.opacity=0);setRot(0)}return}
-    idle=false;
-    const A=Math.min(.6,Math.abs(sm)*1.4),d=dt/1000,sc=(.7+Math.abs(sm)*1.3).toFixed(2);
-    lines.forEach((n,i)=>{P[i]=((P[i]-sm*d*K[i]*2.2)%1+1)%1;const p=P[i];n.style.transform="translateY("+((p-.5)*260).toFixed(1)+"px) scaleY("+sc+")";n.style.opacity=(A*(1-Math.abs(p-.5)*2)).toFixed(3)});
-    setRot(sm*12);
+  const tick=()=>{
+    if(!G)return;
+    const r=l.getBoundingClientRect(),t=target();
+    if(px===null)px=t.x;
+    px+=(t.x-px)*.16;
+    setX(px);setY(t.y);
+    box.style.opacity=r.bottom>0&&r.top<innerHeight?"":"0";
   };
+  measure();
+  const ro=new ResizeObserver(measure);ro.observe(l);
   gsap.ticker.add(tick);
-  build();
-  const ro=new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(build,250)});ro.observe(l);
-  return{kill(){clearTimeout(t);ro.disconnect();gsap.ticker.remove(tick);cx&&cx.revert();gsap.set(box,{rotation:0});l.classList.remove("cube")}};
+  return{kill(){gsap.ticker.remove(tick);ro.disconnect();l.classList.remove("cube")}};
 }
 function ldPreview(l){
   const pv=l.querySelector(".pv");
@@ -1538,7 +1534,7 @@ function buildLanding(){
   <div class="sc sc4"><div class="pvh">Progress</div><svg viewBox="0 0 300 120"><path class="pvx" d="M10 20h280M10 60h280M10 100h280"/><path class="pvc" pathLength="1" d="M10 100C50 96 70 60 110 66S190 30 290 14"/><circle class="pvp" cx="290" cy="14" r="5"/></svg></div></div></div>`;
   const S=(cls,fx,k,t,d,x)=>`<section class="ld-s ${cls}"><div class="ld-k">${k}</div><h2 class="ld-t" data-fx="${fx}">${t}</h2><p class="ld-d">${d}</p>${x||""}</section>`;
   l.innerHTML=`<div class="ld-n"><b>Lingora</b><button data-go>Start learning</button></div>
-  <div class="ld-main"><div class="pc p1"><div class="pbox"><span class="pw" aria-hidden="true"><i style="--x:-46px;--h:70px"></i><i style="--x:-28px;--h:100px"></i><i style="--x:-10px;--h:60px"></i><i style="--x:10px;--h:90px"></i><i style="--x:28px;--h:110px"></i><i style="--x:46px;--h:75px"></i></span></div></div><div class="pc p2"><div class="pm"></div></div><div class="pc p3"><div class="pm"></div></div><div class="pc p4"><div class="pm"></div></div><div class="pc p5"><div class="pm"></div></div><div class="pc p6"><div class="pm"></div></div></div>
+  <div class="ld-main"><div class="pbox"><i></i></div></div>
   <section class="ld-s hr"><h1 class="ld-h" data-speed="0.88" aria-label="Lingora">${"LINGORA".split("").map((c,i)=>`<span style="--i:${i}" aria-hidden="true">${c}</span>`).join("")}</h1><p class="ld-sub" data-fx="chars">English courses, made simple.</p><div class="ld-cue">Scroll ↓</div>
   <button class="ld-bd" data-go aria-label="Start learning"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="bp" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs><text><textPath href="#bp" textLength="480" lengthAdjust="spacing">START LEARNING FOR FREE • START LEARNING FOR FREE •</textPath></text></svg><b>↗</b></button></section>
   ${S("","lines","01 · What is Lingora","A study space for English Education students.","No clutter. Notes, quizzes and a tutor, all in one place.")}
